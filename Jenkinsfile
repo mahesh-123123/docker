@@ -21,9 +21,19 @@ pipeline {
                 }
             }
         }
+        stage('Deploy Docker Image') {
+            steps {
+                script {
+                 withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhubpwd')]) {
+                    bat 'docker login -u javaapp -p ${dockerhubpwd}'
+                 }  
+                 bat 'docker push javaapp:v1'
+                }
+            }
+        }
         stage('deploy') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: 'webserver', path: '', url: 'http://localhost:8080/')], contextPath: 'docker1', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'webserver', path: '', url: 'http://localhost:8080/')], contextPath: 'docker2', war: '**/*.war'
             }
         }
     }
