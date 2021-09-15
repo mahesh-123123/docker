@@ -32,12 +32,7 @@ pipeline {
                 }
             }
         }
-                 
-                     
-                    
-                }
-            }
-        }
+    
         stage('deploy') {
             steps {
                 deploy adapters: [tomcat9(credentialsId: 'webserver', path: '', url: 'http://localhost:8080/')], contextPath: 'docker2', war: '**/*.war'
