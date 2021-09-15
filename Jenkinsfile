@@ -25,6 +25,7 @@ pipeline {
             steps {
                 script {
                  withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/u/maheshreddy123') {
+                     bat 'docker login -u maheshreddy123 -p ${docker}'
     
                 }
                     dockerImage.push()
