@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                  bat 'docker build -t maheshreddy123/javaapp:v3 .'
+                  bat 'docker build -t maheshreddy123/javaapp:v4 .'
                  
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub',  url: '') {
-                bat 'docker push maheshreddy123/javaapp:v3'
+                bat 'docker push maheshreddy123/javaapp:v4'
                
                 }
               }
@@ -36,7 +36,7 @@ pipeline {
         
         stage('deploy') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: 'webserver', path: '', url: 'http://localhost:8080/')], contextPath: 'docker2', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'webserver', path: '', url: 'http://localhost:8080/')], contextPath: 'docker3', war: '**/*.war'
             }
         }
         stage('email') {
