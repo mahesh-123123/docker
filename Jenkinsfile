@@ -24,9 +24,8 @@ pipeline {
         stage('Deploy Docker Image') {
             steps {
                 script {
-                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/u/maheshreddy123') {
-                     bat 'docker login -u maheshreddy123 -p ${docker}'
-    
+                 
+                     withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker', url: 'https://hub.docker.com/u/maheshreddy123') {
                 }
                     dockerImage.push()
                 }
