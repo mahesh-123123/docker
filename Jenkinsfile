@@ -26,7 +26,7 @@ pipeline {
           stage('Deploy Docker Image') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker', url: 'https://hub.docker.com/u/maheshreddy123') {
+                    withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker', url: 'https://hub.docker.com/_/registry') {
                 bat 'docker push maheshreddy123/javaapp:v2'
                
                 }
@@ -41,4 +41,5 @@ pipeline {
         }
     }
 }
+
 
