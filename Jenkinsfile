@@ -11,6 +11,7 @@ pipeline {
             steps {
                 bat 'mvn clean'
                 bat 'mvn install'
+                bat 'mvn package'
             }
         }
         stage('Build Docker Image') {
