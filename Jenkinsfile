@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                  bat 'docker build -t javaapp:v1 .'
+                  bat 'docker build -t maheshreddy123/javaapp:v1 .'
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                             withCredentials([string(credentialsId: 'maheshreddy123', variable: 'docker')]){
-                    bat 'docker login -u maheshreddy -p ${docker}'
+                    bat 'docker login -u maheshreddy123 -p ${docker}'
                  }  
                  bat 'docker push maheshreddy123/javaapp:v1'
                 }
