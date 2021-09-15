@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('war') {
+        stage('SCM') {
             steps {
                 git branch: 'master', url: 'https://github.com/mahesh-123123/docker.git'
             }
         }
-        stage('build') {
+        stage('Maven Build') {
             steps {
                 bat 'mvn clean'
                 bat 'mvn install'
@@ -34,12 +34,12 @@ pipeline {
             }
           }
         
-        stage('deploy') {
+        stage('Deploy in Tomcat') {
             steps {
                 deploy adapters: [tomcat9(credentialsId: 'webserver', path: '', url: 'http://localhost:8080/')], contextPath: 'docker3', war: '**/*.war'
             }
         }
-        stage('email') {
+        stage('Email') {
             steps {
                 mail bcc: '', body: '''Dear Sir,
 
