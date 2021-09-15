@@ -31,7 +31,7 @@ pipeline {
                 bat 'docker tag javaapp maheshreddy123/javaapp:v2'
                 bat'docker tag javaapp maheshreddy123/javaapp:$BUILD_NUMBER'
                 }
-                }
+              }
             }
           }
         
