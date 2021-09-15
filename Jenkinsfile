@@ -13,6 +13,13 @@ pipeline {
                 bat 'mvn install'
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                  bat 'docker build -t javaapp:v1 .'
+                }
+            }
+        }
         stage('deploy') {
             steps {
                 deploy adapters: [tomcat9(credentialsId: 'webserver', path: '', url: 'http://localhost:8080/')], contextPath: 'docker', war: '**/*.war'
