@@ -27,7 +27,7 @@ pipeline {
                  withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhubpwd')]) {
                     bat 'docker login -u maheshreddy123 -p ${dockerhubpwd}'
                  }  
-                 bat 'docker push javaapp:v1'
+                 bat 'docker push maheshreddy123/javaapp:v1'
                 }
             }
         }
