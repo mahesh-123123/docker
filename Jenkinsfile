@@ -25,14 +25,14 @@ pipeline {
           stage('Deploy Docker Image') {
             steps {
                 script {
-                            withCredentials([string(credentialsId: 'maheshreddy123', variable: 'docker')]){
-                    bat 'docker login -u maheshreddy123 -p ${docker}'
+                            withCredentials([string(credentialsId: 'maheshreddy', variable: 'Mahesh123@')]){
+                    bat 'docker login -u maheshreddy123 -p ${Mahesh123@}'
                  }  
                  bat 'docker push maheshreddy123/javaapp:v1'
                 }
             }
         }
-    
+        
         stage('deploy') {
             steps {
                 deploy adapters: [tomcat9(credentialsId: 'webserver', path: '', url: 'http://localhost:8080/')], contextPath: 'docker2', war: '**/*.war'
