@@ -26,13 +26,14 @@ pipeline {
         
           stage('Deploy Docker Image') {
             steps {
-                script {withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker', url: 'https://hub.docker.com/u/maheshreddy123') {
+                script {
+                    withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker', url: 'https://hub.docker.com/u/maheshreddy123') {
                 bat 'docker tag javaapp maheshreddy123/javaapp:v2'
                 bat'docker tag javaapp maheshreddy123/javaapp:$BUILD_NUMBER'
                 }
                 }
             }
-        
+          }
         
         stage('deploy') {
             steps {
@@ -41,4 +42,4 @@ pipeline {
         }
     }
 }
-}
+
