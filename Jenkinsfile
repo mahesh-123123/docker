@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                  withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhubpwd')]) {
-                    bat 'docker login -u javaapp -p ${dockerhubpwd}'
+                    bat 'docker login -u maheshreddy123 -p ${dockerhubpwd}'
                  }  
                  bat 'docker push javaapp:v1'
                 }
