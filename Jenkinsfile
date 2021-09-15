@@ -25,7 +25,7 @@ pipeline {
           stage('Deploy Docker Image') {
             steps {
                 script {
-                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'mahesh', usernameVariable: 'maheshreddy')]) {
+                            withCredentials([string(credentialsId: 'maheshreddy123', variable: 'docker')]){
                     bat 'docker login -u maheshreddy -p ${docker}'
                  }  
                  bat 'docker push maheshreddy123/javaapp:v1'
@@ -40,3 +40,4 @@ pipeline {
         }
     }
 }
+
